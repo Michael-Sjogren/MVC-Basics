@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MVCBasics.Models;
+using MVCBasics.Models.Interfaces;
 
 namespace MVC_Basics
 {
@@ -17,7 +19,7 @@ namespace MVC_Basics
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddScoped<>();
+            services.AddScoped<IProjectsRepository , ProjectsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
