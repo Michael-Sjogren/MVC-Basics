@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Projects";
+}
+<section class="">
+        <header>
+            <h1>@ViewData["Title"]</h1>
+            <p>Some of my project assignments made for my supplementary education at Lexicon as a .NET Developer. </p>
+        </header>
+    <ul class="d-flex flex-wrap list-unstyled justify-content-evenly">
+        @foreach (var project in ViewBag.Projects)
+        {
+            <li class="mt-4 mb-4 m-1">
+                <div class="card" style="width: 20rem;">
+                    <header class="card-header">
+                        <p class="card-title">@project.Name</p>
+                    </header>
+                    <div class="card-body">
+                        <p class="card-text">@project.Description</p>
+                    </div>
+                    <footer class="card-footer">
+                        <span>
+                            <a target="_blank" href="@project.Link">See Code</a>
+                        </span>
+                    </footer>
+                </div>
+            </li>
+        }
+    </ul>
+</section>

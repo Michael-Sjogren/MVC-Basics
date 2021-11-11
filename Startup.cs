@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using MVCBasics.Models;
 using MVCBasics.Models.Interfaces;
 
-namespace MVC_Basics
+namespace MVCBasics
 {
     public class Startup
     {
@@ -18,8 +18,8 @@ namespace MVC_Basics
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
             services.AddScoped<IProjectsRepository , ProjectsRepository>();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,14 +30,33 @@ namespace MVC_Basics
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            
             app.UseRouting();
 
+            app.UseAuthorization();
+            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute(
+                     "default",
+                    "{controller=Portfolio}/{action=About}/{id?}");
+                endpoints.MapControllerRoute(
+                    "About",
+                    "{action=About}",
+                    defaults: new { controller = "Portfolio" , action = "About"}
+                );
+                endpoints.MapControllerRoute(
+                    "Contact",
+                    "{action=Contact}",
+                    defaults: new { controller = "Portfolio" , action = "Contact"}
+                );
+                endpoints.MapControllerRoute(
+                    "Projects",
+                    "{action=Projects}",
+                    defaults: new { controller = "Portfolio" , action = "Projects"}
+                );
             });
         }
     }
