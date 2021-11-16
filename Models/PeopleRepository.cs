@@ -7,39 +7,35 @@ namespace MVCBasics.Models
 {
     public class PeopleRepository : IPeopleRepository
     {
-        public List<Person> People { get; set; }
-
-        public PeopleRepository()
-        {
-            People = new List<Person>{
-                new() {Name = "Jens", City = "Malmö" , PhoneNumber = "07328214"},
-                new() {Name = "Per" , City = "London" , PhoneNumber = "0732821432"},
-                new() {Name = "Johan" , City = "Kiruna" , PhoneNumber = "0732438214 "},
-                new() {Name = "Alex" , City = "Skövde" , PhoneNumber = "07328214"},
-                new() {Name = "Sofia" , City = "Stockholm" , PhoneNumber = "07328214"},
-                new() {Name = "Kerstin", City = "Göteborg", PhoneNumber = "07328214"},
-            };
-        }
-
+        private static List<Person> _people = new (){
+            new Person {Name = "Jens", City = "Malmö" , PhoneNumber = "07328214"},
+            new Person {Name = "Per" , City = "London" , PhoneNumber = "0732821432"},
+            new Person {Name = "Johan" , City = "Kiruna" , PhoneNumber = "0732438214 "},
+            new Person {Name = "Alex" , City = "Skövde" , PhoneNumber = "07328214"},
+            new Person {Name = "Sofia" , City = "Stockholm" , PhoneNumber = "07328214"},
+            new Person {Name = "Kerstin", City = "Göteborg", PhoneNumber = "07328214"},
+        };
+        
         public List<Person> GetAllPeople()
         {
-            return People;
+            return _people;
         }
 
         public Person GetPersonById(int id)
         {
-            return People.First(e => e.Id == id);
+            return _people.FirstOrDefault(e => e.Id == id);
         }
 
         public Person GetPersonByName(string name)
         {
-            return People.First(e => e.Name.Equals(name));
+            return _people.FirstOrDefault(e => e.Name.Equals(name));
         }
 
         public void DeletePersonById(int id)
         {
             var p = GetPersonById(id);
-            People = People.Where(person => person.Id == p.Id ).ToList();
+            if (p is null) return;
+            _people = _people.Where(person => person.Id != p.Id ).ToList();
         }
 
         public void CreatePerson(CreatePersonViewModel vm)
@@ -51,7 +47,7 @@ namespace MVCBasics.Models
                 PhoneNumber = vm.PhoneNumber
             };
             
-            People.Add(newPerson);
+            _people.Add(newPerson);
         }
     }
 }

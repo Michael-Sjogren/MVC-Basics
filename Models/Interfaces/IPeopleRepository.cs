@@ -5,7 +5,6 @@ namespace MVCBasics.Models.Interfaces
 {
     public interface IPeopleRepository
     {
-        public List<Person> People { get; set; }
         public List<Person> GetAllPeople();
         public Person GetPersonById(int id);
         public Person GetPersonByName(string name);
