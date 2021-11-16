@@ -1,0 +1,18 @@
+@model MVCBasics.ModelViews.CreatePersonViewModel
+
+<form action="/People/Create" method="post" class="form p-5 border border-secondary" id="create" style="max-width: 28rem; margin-left: auto;">
+    <h4 class="form-text">Create a new Person.</h4>
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input class="form-control" name="Name" id="Name" type="text" placeholder=""/>
+    </div>
+    <div class="form-group">
+        <label for="City">City</label>
+        <input class="form-control" name="City" id="City" type="text" placeholder=""/>
+    </div>
+    <div class="form-group">
+        <label for="Phone">Phone</label>
+        <input class="form-control" name="PhoneNumber" id="Phone" type="text" placeholder=""/>
+    </div>
+    <button class="form-control btn btn-primary" type="submit"> Create </button>
+</form>

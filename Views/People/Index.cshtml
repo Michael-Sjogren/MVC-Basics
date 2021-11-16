@@ -1,0 +1,55 @@
+@using MVCBasics.ModelViews
+@model MVCBasics.ModelViews.PeopleViewModel
+
+<section>
+    <header>
+        <h1>People</h1>
+    </header>
+    @await Html.PartialAsync("_CreatePersonForm",new CreatePersonViewModel())
+    
+    <section class="mt-5">
+        <header class="d-flex justify-content-between">
+            <h2>
+                People List
+            </h2>
+            <form action="" class="" id="search" style="max-width: 48rem;">
+                <div class="input-group">
+                    <input style="min-width: 20rem" class="form-control" name="search" type="search" placeholder="Search for a name..."/>
+                    <button class="form-control btn btn-outline-primary" type="submit"> Search </button>
+                </div>
+            </form>
+        </header>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th scope="col"># Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Phone</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                var i = 0;
+                foreach (var person in Model.People)
+                {
+                    <tr>
+                        <th scope="row">@person.Id</th>
+                        <td>@person.Name</td>
+                        <td>@person.City</td>
+                        <td>@person.PhoneNumber</td>
+                        <td class="text-center" style="max-width: 2rem">
+                            <button class="btn btn-danger">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            </tbody>
+        </table>
+    </section>
+
+</section>

@@ -18,7 +18,8 @@ namespace MVCBasics
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IProjectsRepository , ProjectsRepository>();
+            services.AddScoped<IProjectsRepository, ProjectsRepository>();
+            services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddControllersWithViews();
         }
 
@@ -32,30 +33,34 @@ namespace MVCBasics
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
 
-            app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                     "default",
+                    "default",
                     "{controller=Portfolio}/{action=About}/{id?}");
                 endpoints.MapControllerRoute(
                     "About",
                     "{action=About}",
-                    defaults: new { controller = "Portfolio" , action = "About"}
+                    defaults: new {controller = "Portfolio", action = "About"}
                 );
                 endpoints.MapControllerRoute(
                     "Contact",
                     "{action=Contact}",
-                    defaults: new { controller = "Portfolio" , action = "Contact"}
+                    defaults: new {controller = "Portfolio", action = "Contact"}
                 );
                 endpoints.MapControllerRoute(
                     "Projects",
                     "{action=Projects}",
-                    defaults: new { controller = "Portfolio" , action = "Projects"}
+                    defaults: new {controller = "Portfolio", action = "Projects"}
+                );
+
+                endpoints.MapControllerRoute(
+                    "People",
+                    "{controller=People}/{action=Index}/{id?}"
                 );
             });
         }
