@@ -8,16 +8,11 @@
     @await Html.PartialAsync("_CreatePersonForm",new CreatePersonViewModel())
     
     <section class="mt-5">
-        <header class="d-flex justify-content-between">
+        <header class="d-flex justify-content-between flex-wrap">
             <h2>
                 People List
             </h2>
-            <form action="" class="" id="search" style="max-width: 48rem;">
-                <div class="input-group">
-                    <input style="min-width: 20rem" class="form-control" name="search" type="search" placeholder="Search for a name..."/>
-                    <button class="form-control btn btn-outline-primary" type="submit"> Search </button>
-                </div>
-            </form>
+            @await Html.PartialAsync("_SearchPersonForm" , new SearchPersonViewModel())
         </header>
         <table class="table table-bordered table-striped">
             <thead>

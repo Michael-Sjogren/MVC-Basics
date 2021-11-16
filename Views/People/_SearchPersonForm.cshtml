@@ -1,0 +1,8 @@
+@model MVCBasics.ModelViews.SearchPersonViewModel
+
+<form asp-controller="People" asp-action="Search" method="post" style="max-width: 48rem;">
+    <div class="input-group">
+        <input asp-for="SearchText" class="form-control" placeholder="Search by person name or city..." style="min-width: 25rem"/>
+        <button class="form-control btn btn-outline-primary" type="submit"> Search </button>
+    </div>
+</form>
