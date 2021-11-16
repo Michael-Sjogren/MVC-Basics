@@ -14,37 +14,12 @@
             </h2>
             @await Html.PartialAsync("_SearchPersonForm" , new SearchPersonViewModel())
         </header>
-        <table class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th scope="col"># Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">City</th>
-                <th scope="col">Phone</th>
-                <th class="text-center" scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @{
-                var i = 0;
-                foreach (var person in Model.People)
-                {
-                    <tr>
-                        <th scope="row">@person.Id</th>
-                        <td>@person.Name</td>
-                        <td>@person.City</td>
-                        <td>@person.PhoneNumber</td>
-                        <td class="text-center" style="max-width: 2rem">
-                            <a class="btn btn-danger"asp-controller="People" asp-action="Delete" asp-route-id="@person.Id" >
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                    i++;
-                }
+        <section class="w-auto p-2">
+            @foreach (var person in Model.People)
+            {
+                <partial name="_Person" model="person"/>
             }
-            </tbody>
-        </table>
+        </section>
     </section>
 
 </section>
