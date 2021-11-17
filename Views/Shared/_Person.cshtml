@@ -1,4 +1,3 @@
-@using MVCBasics.Models
 @model MVCBasics.Models.Person
 
 <div class="row align-items-start p-2 border-top border-secondary">
@@ -19,7 +18,7 @@
     <!-- känns som att jag bryter någon helig regel genom att ha delete knappen här men vet inte annars hur det ska lösas. ¯\_(ツ)_/¯ -->
     <div class="align-self-end">
         <a class="btn btn-outline-danger" asp-controller="People" asp-action="Delete" asp-route-id="@Model.Id">
-            Delete
+            Delete (not ajax)
         </a>
     </div>
 </div>

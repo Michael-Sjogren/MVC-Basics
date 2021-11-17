@@ -5,21 +5,17 @@
     <header>
         <h1>People</h1>
     </header>
-    @await Html.PartialAsync("_CreatePersonForm",new CreatePersonViewModel())
+    <partial name="_CreatePersonForm" model="@new CreatePersonViewModel();"/>
     
     <section class="mt-5">
         <header class="d-flex justify-content-between flex-wrap">
             <h2>
                 People List
             </h2>
-            @await Html.PartialAsync("_SearchPersonForm" , new SearchPersonViewModel())
+            <partial name="_SearchPersonForm" model="@new SearchPersonViewModel()"/>
         </header>
         <section class="w-auto p-2">
-            @foreach (var person in Model.People)
-            {
-                <partial name="_Person" model="person"/>
-            }
+            <partial name="_PeopleList" model=@Model.People/>
         </section>
     </section>
-
 </section>

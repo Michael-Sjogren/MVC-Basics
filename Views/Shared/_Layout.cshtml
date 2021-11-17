@@ -13,6 +13,9 @@
         </span>
         <ul class="navbar list-unstyled d-flex flex-grow-1 justify-content-sm-evenly container">
             <li class="nav-item nav-tabs">
+                <a class="nav-link" asp-action="Index" asp-controller="Ajax">Ajax</a>
+            </li>
+            <li class="nav-item nav-tabs">
                 <a class="nav-link" href="/People">People</a>
             </li>
             <li class="nav-item nav-tabs">
@@ -37,6 +40,10 @@
         <span> &copy; <b> Michael Sjögren</b></span> <span> @DateTime.Now.ToString("MMM dd, yyyy")</span>
     </div>
 </footer>
+    <script src="~/lib/jquery-3.6.0.js"></script>
+    <script src="~/js/PeopleAjax.js"></script>
+
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

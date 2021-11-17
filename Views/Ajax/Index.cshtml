@@ -1,0 +1,38 @@
+@using MVCBasics.ModelViews
+@model MVCBasics.ModelViews.PeopleViewModel
+
+<section>
+    <header>
+        <h1>People ~ Ajax</h1>
+    </header>
+    <partial name="_CreatePersonForm" model="@new CreatePersonViewModel();"/>
+
+    <section class="mt-5">
+        <header class="d-flex justify-content-between flex-wrap">
+            <h2>
+                People List
+            </h2>
+        </header>
+        
+        <div class="d-flex flex-wrap justify-content-between">
+            <button onclick="GetPeople()" class="btn btn-primary mr-4">Get all People</button>
+            <div class="flex-grow-1 mr-4">
+                <div class="input-group m-auto">
+                    <button id="ajax-person-search-btn" class="btn btn-outline-primary">Ajax Search</button>
+                    <input id="ajax-person-search-input" type="text" placeholder="Search a person by entering their or name or city or id." class="form-control">
+                </div>
+            </div>
+            
+            <div>
+                <div class="input-group m-auto">
+                    <input id="ajax-person-delete-input" type="text" placeholder="Enter a person ID to delete that person." class="form-control">
+                    <button id="ajax-person-delete-btn" class="btn btn-outline-danger">Ajax Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <section id="people-list" class="mt-5">
+
+        </section>
+    </section>
+</section>

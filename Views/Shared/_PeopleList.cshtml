@@ -1,0 +1,7 @@
+@model List<MVCBasics.Models.Person>
+<div>
+@foreach (var person in Model)
+{
+    <partial name="_Person" model="person"/>
+}
+</div>
