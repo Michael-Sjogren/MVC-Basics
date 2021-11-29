@@ -12,12 +12,10 @@ namespace MVCBasics.Controllers
     public class PeopleController : Controller
     {
         private readonly IPeopleRepository _peopleRepository;
-        private readonly PeopleContext _context;
 
-        public PeopleController(IPeopleRepository peopleRepository , PeopleContext context)
+        public PeopleController(IPeopleRepository peopleRepository)
         {
             _peopleRepository = peopleRepository;
-            _context = context;
         }
 
         // GET
@@ -26,7 +24,7 @@ namespace MVCBasics.Controllers
         {
             var model = new PeopleViewModel
             {
-                People = _context.People.ToList()
+                People = _peopleRepository.GetAllPeople()
             };
             return View(model);
         }

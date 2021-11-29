@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using MVCBasics.DataAccess;
 using MVCBasics.Models.Interfaces;
 using MVCBasics.ModelViews;
 
@@ -7,35 +8,33 @@ namespace MVCBasics.Models
 {
     public class PeopleRepository : IPeopleRepository
     {
-        private static List<Person> _people = new (){
-            new Person {Name = "Jens", City = "Malmö" , PhoneNumber = "07328214"},
-            new Person {Name = "Per" , City = "London" , PhoneNumber = "0732821432"},
-            new Person {Name = "Johan" , City = "Kiruna" , PhoneNumber = "0732438214 "},
-            new Person {Name = "Alex" , City = "Skövde" , PhoneNumber = "07328214"},
-            new Person {Name = "Sofia" , City = "Stockholm" , PhoneNumber = "07328214"},
-            new Person {Name = "Kerstin", City = "Göteborg", PhoneNumber = "07328214"},
-        };
-        
+        private readonly PeopleContext _context;
+
+        public PeopleRepository(PeopleContext context)
+        {
+            _context = context;
+        }
         public List<Person> GetAllPeople()
         {
-            return _people;
+            return _context.People.ToList();
         }
 
         public Person GetPersonById(int id)
         {
-            return _people.FirstOrDefault(e => e.Id == id);
+            return _context.People.Find(id);
         }
 
         public Person GetPersonByName(string name)
         {
-            return _people.FirstOrDefault(e => e.Name.Equals(name));
+            return _context.People.AsQueryable().First(e => e.Name.Equals(name));
         }
 
         public void DeletePersonById(int id)
         {
             var p = GetPersonById(id);
             if (p is null) return;
-            _people = _people.Where(person => person.Id != p.Id ).ToList();
+            _context.People.Remove(p);
+            _context.SaveChanges();
         }
 
         public void CreatePerson(CreatePersonViewModel vm)
@@ -47,7 +46,8 @@ namespace MVCBasics.Models
                 PhoneNumber = vm.PhoneNumber
             };
             
-            _people.Add(newPerson);
+            _context.People.Add(newPerson);
+            _context.SaveChanges();
         }
     }
 }

@@ -7,7 +7,10 @@ namespace MVCBasics.DataAccess
     {
         public PeopleContext(DbContextOptions options) : base(options) { }
         public DbSet<Person> People { get; set; }
-        
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+        } 
     }
 }
