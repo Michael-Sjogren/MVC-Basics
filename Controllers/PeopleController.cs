@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using MVCBasics.DataAccess;
 using MVCBasics.Models;
 using MVCBasics.Models.Interfaces;
 using MVCBasics.ModelViews;
@@ -11,10 +12,12 @@ namespace MVCBasics.Controllers
     public class PeopleController : Controller
     {
         private readonly IPeopleRepository _peopleRepository;
+        private readonly PeopleContext _context;
 
-        public PeopleController(IPeopleRepository peopleRepository)
+        public PeopleController(IPeopleRepository peopleRepository , PeopleContext context)
         {
             _peopleRepository = peopleRepository;
+            _context = context;
         }
 
         // GET
@@ -23,7 +26,7 @@ namespace MVCBasics.Controllers
         {
             var model = new PeopleViewModel
             {
-                People = _peopleRepository.GetAllPeople()
+                People = _context.People.ToList()
             };
             return View(model);
         }

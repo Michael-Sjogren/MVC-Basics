@@ -1,16 +1,15 @@
 
 
+using System.ComponentModel.DataAnnotations;
+
 namespace MVCBasics.Models
 {
     public class Person
     {
-        public Person()
-        {
-            Id = PersonIdSequencer.NextPersonId;
-        }
-        public int Id { get; }
-        public string Name { get; set; }
-        public string PhoneNumber { get; set; }
-        public string City { get; set; }
+
+        [Key] public int Id { get; set; }
+        [Required] public string Name { get; set; }
+        [Required] public string PhoneNumber { get; set; }
+        [Required] public string City { get; set; }
     }
 }
