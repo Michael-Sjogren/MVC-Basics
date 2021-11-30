@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using MVCBasics.DataAccess;
 using MVCBasics.Models;
 using MVCBasics.Models.Interfaces;
+using MVCBasics.Models.Repository;
 
 namespace MVCBasics
 {
@@ -31,7 +32,8 @@ namespace MVCBasics
 
             services.AddScoped<IProjectsRepository, ProjectsRepository>();
             services.AddScoped<IPeopleRepository, PeopleRepository>();
-            
+            services.AddScoped<ICitiesRepository, CitiesRepository>();
+
             services.AddControllersWithViews();
         }
 

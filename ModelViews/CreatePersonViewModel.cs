@@ -7,7 +7,7 @@ namespace MVCBasics.ModelViews
     public class CreatePersonViewModel
     {
         [Required] [DataType(DataType.Text)] [DisplayName("Full Name")] public string Name { get; set; }
-        [Required] [DataType(DataType.Text)] [DisplayName("City")] public string City { get; set; }
+        [Required] [DisplayName("City")] public int CityId { get; set; }
         [Required] [DataType(DataType.Text)] [DisplayName("Phone Number")] public string PhoneNumber { get; set; }
     }
 }

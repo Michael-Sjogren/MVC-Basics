@@ -11,15 +11,18 @@ namespace MVCBasics.Controllers
     public class AjaxController : Controller
     {
         private readonly IPeopleRepository _peopleRepository;
-
-        public AjaxController(IPeopleRepository peopleRepository)
+        private readonly ICitiesRepository _citiesRepository;
+        public AjaxController(IPeopleRepository peopleRepository, ICitiesRepository citiesRepository)
         {
             _peopleRepository = peopleRepository;
+            _citiesRepository = citiesRepository;
         }
+        
         [HttpGet]
         [Route("/Ajax/")]
         public IActionResult Index()
         {
+            ViewBag.Cities = _citiesRepository.GetAllCities();
             return View(new PeopleViewModel{ People = _peopleRepository.GetAllPeople()});
         }
 

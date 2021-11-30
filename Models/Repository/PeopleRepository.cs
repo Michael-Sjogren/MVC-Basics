@@ -5,7 +5,7 @@ using MVCBasics.DataAccess;
 using MVCBasics.Models.Interfaces;
 using MVCBasics.ModelViews;
 
-namespace MVCBasics.Models
+namespace MVCBasics.Models.Repository
 {
     public class PeopleRepository : IPeopleRepository
     {
@@ -43,7 +43,7 @@ namespace MVCBasics.Models
             var newPerson = new Person
             {
                 Name = vm.Name,
-                City = _context.Cities.Find(vm.City),
+                City = _context.Cities.Find(vm.CityId),
                 PhoneNumber = vm.PhoneNumber
             };
             
