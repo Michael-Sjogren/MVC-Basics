@@ -55,7 +55,7 @@ namespace MVCBasics.Controllers
                     .GetAllPeople()
                     .FindAll(p =>
                         p.Name.Contains(model.SearchText, comparator) ||
-                        p.City.Contains(model.SearchText , comparator)
+                        p.City.Name.Contains(model.SearchText , comparator)
                     )
             };
             Console.WriteLine(vm.People.ToArray());
