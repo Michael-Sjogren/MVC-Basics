@@ -24,13 +24,14 @@ namespace MVCBasics
         public void ConfigureServices(IServiceCollection services)
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<PeopleContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseMySql(connectionString , ServerVersion.AutoDetect(connectionString));
             });
 
             services.AddScoped<IProjectsRepository, ProjectsRepository>();
             services.AddScoped<IPeopleRepository, PeopleRepository>();
+            
             services.AddControllersWithViews();
         }
 
@@ -47,7 +48,7 @@ namespace MVCBasics
 
             app.UseRouting();
 
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -74,6 +75,8 @@ namespace MVCBasics
                     "{controller=People}/{action=Index}/{id?}"
                 );
             });
+            // populate db
+            Seed.PopulateDb(app);
         }
     }
 }

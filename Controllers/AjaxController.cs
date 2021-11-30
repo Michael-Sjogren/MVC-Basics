@@ -48,7 +48,7 @@ namespace MVCBasics.Controllers
                 .FindAll(p =>
                     p.Name.Contains(model.SearchText, comp) ||
                     p.Id.ToString().Equals(model.SearchText, comp) ||
-                    p.City.Contains(model.SearchText, comp)
+                    p.City.Name.Contains(model.SearchText, comp)
                 );
             
             return PartialView("_PeopleList",list);
