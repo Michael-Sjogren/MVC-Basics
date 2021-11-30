@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MVCBasics.DataAccess;
 using MVCBasics.Models.Interfaces;
+using MVCBasics.ViewModels;
 
 namespace MVCBasics.Models.Repository
 {
@@ -32,6 +33,11 @@ namespace MVCBasics.Models.Repository
             var city = GetCityById(id);
             _context.Cities.Remove(city);
             _context.SaveChanges();
+        }
+
+        public void CreateCity(CreateCityViewModel vm)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

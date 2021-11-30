@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using MVCBasics.ModelViews;
+using MVCBasics.ViewModels;
+
 
 namespace MVCBasics.Models.Interfaces
 {

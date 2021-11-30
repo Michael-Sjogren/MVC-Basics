@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using MVCBasics.Models;
 using MVCBasics.Models.Interfaces;
-using MVCBasics.ModelViews;
+using MVCBasics.ViewModels;
 
 namespace MVCBasics.Controllers
 {
@@ -30,7 +27,7 @@ namespace MVCBasics.Controllers
         [HttpGet]
         public IActionResult GetPeopleList()
         {
-            return PartialView("_PeopleList",_peopleRepository.GetAllPeople());
+            return PartialView("_PeopleListPartial",_peopleRepository.GetAllPeople());
         }
         
         [HttpPost]
@@ -54,7 +51,7 @@ namespace MVCBasics.Controllers
                     p.City.Name.Contains(model.SearchText, comp)
                 );
             
-            return PartialView("_PeopleList",list);
+            return PartialView("_PeopleListPartial",list);
         }
     }
 }

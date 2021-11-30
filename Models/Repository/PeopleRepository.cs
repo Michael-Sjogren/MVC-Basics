@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MVCBasics.DataAccess;
 using MVCBasics.Models.Interfaces;
-using MVCBasics.ModelViews;
+using MVCBasics.ViewModels;
 
 namespace MVCBasics.Models.Repository
 {
@@ -37,7 +37,7 @@ namespace MVCBasics.Models.Repository
             _context.People.Remove(p);
             _context.SaveChanges();
         }
-
+        
         public void CreatePerson(CreatePersonViewModel vm)
         {
             var newPerson = new Person

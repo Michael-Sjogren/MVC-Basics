@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MVCBasics.ViewModels;
 
 namespace MVCBasics.Models.Interfaces
 {
@@ -9,6 +10,6 @@ namespace MVCBasics.Models.Interfaces
         public City GetCityByName(string name);
         public void DeleteCity(int id);
 
-        //public void CreateCity(CreatePersonViewModel vm);
+        public void CreateCity(CreateCityViewModel vm);
     }
 }

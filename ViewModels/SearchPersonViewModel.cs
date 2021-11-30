@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace MVCBasics.ModelViews
+namespace MVCBasics.ViewModels
 {
     public class SearchPersonViewModel
     {

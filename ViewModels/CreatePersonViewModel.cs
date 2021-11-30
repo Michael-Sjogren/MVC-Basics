@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using MVCBasics.Models;
 
-namespace MVCBasics.ModelViews
+namespace MVCBasics.ViewModels
 {
     public class CreatePersonViewModel
     {

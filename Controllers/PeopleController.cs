@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using MVCBasics.DataAccess;
-using MVCBasics.Models;
 using MVCBasics.Models.Interfaces;
-using MVCBasics.ModelViews;
+using MVCBasics.ViewModels;
 
 namespace MVCBasics.Controllers
 {
@@ -35,7 +32,7 @@ namespace MVCBasics.Controllers
         [HttpPost]
         public IActionResult Create(CreatePersonViewModel model)
         {
-            if (!ModelState.IsValid) return View("_CreatePersonForm", model);
+            if (!ModelState.IsValid) return View("_CreatePersonFormPartial", model);
 
             _peopleRepository.CreatePerson(model);
             return Redirect("/People/");

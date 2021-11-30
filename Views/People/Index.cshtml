@@ -1,18 +1,22 @@
-@using MVCBasics.ModelViews
-@model MVCBasics.ModelViews.PeopleViewModel
+@using MVCBasics.ViewModels
+@model MVCBasics.ViewModels.PeopleViewModel
 
 <section>
     <header>
         <h1>People</h1>
     </header>
-    <partial name="_CreatePersonForm" model="@new CreatePersonViewModel();"/>
+    @{
+        var createPersonVm = new CreatePersonViewModel();
+        var searchPersonVm = new SearchPersonViewModel();
+    }
+    <partial name="_CreatePersonForm" model="@createPersonVm;"/>
     
     <section class="mt-5">
         <header class="d-flex justify-content-between flex-wrap">
             <h2>
                 People List
             </h2>
-            <partial name="_SearchPersonForm" model="@new SearchPersonViewModel()"/>
+            <partial name="_SearchPersonForm" model="@searchPersonVm;"/>
         </header>
         <section class="w-auto p-2">
             <partial name="_PeopleList" model="@Model.People"/>

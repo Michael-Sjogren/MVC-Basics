@@ -1,4 +1,4 @@
-namespace MVCBasics.ModelViews
+namespace MVCBasics.ViewModels
 {
     public class CityViewModel
     {

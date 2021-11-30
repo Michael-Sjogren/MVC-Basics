@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MVCBasics.Models;
 
-namespace MVCBasics.ModelViews
+namespace MVCBasics.ViewModels
 {
     public class PeopleViewModel
     {
