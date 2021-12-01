@@ -21,4 +21,9 @@
     <Folder Include="wwwroot\lib" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\City\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Country\Index.cshtml" />
+  </ItemGroup>
+
 </Project>
