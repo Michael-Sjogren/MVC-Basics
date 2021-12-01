@@ -19,6 +19,7 @@ namespace MVCBasics.Controllers
 
         // GET
         [HttpGet]
+        [Route("/People/")]
         public IActionResult Index()
         {
             var model = new PeopleViewModel
@@ -32,6 +33,7 @@ namespace MVCBasics.Controllers
         [HttpPost]
         public IActionResult Create(CreatePersonViewModel model)
         {
+            ViewBag.Cities = _citiesRepository.GetAllCities();
             if (!ModelState.IsValid) return View("_CreatePersonFormPartial", model);
 
             _peopleRepository.CreatePerson(model);
