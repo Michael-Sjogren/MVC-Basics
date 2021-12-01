@@ -79,8 +79,6 @@ namespace MVCBasics
                     "{controller=People}/{action=Index}/{id?}"
                 );
             });
-            // populate db
-            Seed.PopulateDb(app);
         }
     }
 }
