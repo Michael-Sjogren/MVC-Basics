@@ -1,0 +1,44 @@
+@using MVCBasics.ViewModels
+@model List<MVCBasics.Models.Country>
+
+<section>
+    <header>
+        <h1>Countries</h1>
+    </header>
+    @{
+        var createCountryVm = new CreateCountryViewModel();
+        //var searchPersonVm = new SearchPersonViewModel();
+    }
+    <section class="mt-5">
+        <header class="d-flex justify-content-between flex-wrap">
+        <partial name="_CreateCountryPartial" model="@createCountryVm"></partial>
+        </header>
+            <h2>
+                List of Countries
+            </h2>
+        <section class="w-auto p-2">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <th>#</th>
+                <th>Name</th>
+                </thead>
+                <tbody>
+                @foreach (var country in Model)
+                {
+                    <tr>
+                        <td>@country.Id</td>
+                        <td>@country.Name</td>
+                        <td>
+                            <a class="btn btn-outline-danger" asp-controller="Country" asp-action="Delete" asp-route-id="@country.Id">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+
+            </table>
+
+        </section>
+    </section>
+</section>
