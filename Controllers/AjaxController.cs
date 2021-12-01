@@ -9,6 +9,7 @@ namespace MVCBasics.Controllers
     {
         private readonly IPeopleRepository _peopleRepository;
         private readonly ICitiesRepository _citiesRepository;
+        private const string ListPartialPath = "~/Views/People/_PeopleListPartial.cshtml";
         public AjaxController(IPeopleRepository peopleRepository, ICitiesRepository citiesRepository)
         {
             _peopleRepository = peopleRepository;
@@ -27,7 +28,7 @@ namespace MVCBasics.Controllers
         [HttpGet]
         public IActionResult GetPeopleList()
         {
-            return PartialView("_PeopleListPartial",_peopleRepository.GetAllPeople());
+            return PartialView(ListPartialPath,_peopleRepository.GetAllPeople());
         }
         
         [HttpPost]
@@ -51,7 +52,7 @@ namespace MVCBasics.Controllers
                     p.City.Name.Contains(model.SearchText, comp)
                 );
             
-            return PartialView("_PeopleListPartial",list);
+            return PartialView(ListPartialPath,list);
         }
     }
 }
