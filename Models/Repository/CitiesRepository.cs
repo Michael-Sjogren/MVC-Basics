@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using MVCBasics.DataAccess;
 using MVCBasics.Models.Interfaces;
 using MVCBasics.ViewModels;
@@ -15,7 +16,7 @@ namespace MVCBasics.Models.Repository
         }
         public List<City> GetAllCities()
         {
-            return _context.Cities.ToList();
+            return _context.Cities.Include(c => c.Country).ToList();
         }
 
         public City GetCityById(int id)
@@ -37,7 +38,10 @@ namespace MVCBasics.Models.Repository
 
         public void CreateCity(CreateCityViewModel vm)
         {
-            throw new System.NotImplementedException();
+            _context.Cities.Add(
+                new City{Name = vm.Name , Country = _context.Countries.Find(vm.CountryId)}
+                );
+            _context.SaveChanges();
         }
     }
 }
