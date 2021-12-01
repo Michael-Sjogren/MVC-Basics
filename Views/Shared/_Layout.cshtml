@@ -12,20 +12,26 @@
             <h2 class="navbar-brand d-inline-block">Lexicon MVCBasics - Michael Sjögren</h2>
         </span>
         <ul class="navbar list-unstyled d-flex flex-grow-1 justify-content-sm-evenly container">
+            @*<li class="nav-item nav-tabs">
+                <a class="nav-link" asp-controller="Ajax" asp-action="Index">Ajax</a>
+            </li>*@
             <li class="nav-item nav-tabs">
-                <a class="nav-link" asp-action="Index" asp-controller="Ajax">Ajax</a>
+                <a class="nav-link" asp-controller="People" asp-action="Index">People</a>
             </li>
             <li class="nav-item nav-tabs">
-                <a class="nav-link" href="/People">People</a>
+                <a class="nav-link" asp-controller="City" asp-action="Index">Cities</a>
             </li>
             <li class="nav-item nav-tabs">
-                <a class="nav-link" href="/About">About</a>
+                <a class="nav-link" asp-controller="Country" asp-action="Index">Countries</a>
             </li>
             <li class="nav-item nav-tabs">
-                <a class="nav-link" href="/Projects">Projects</a>
+                <a class="nav-link" asp-controller="Portfolio" asp-action="About">About</a>
             </li>
+            @*<li class="nav-item nav-tabs">
+                <a class="nav-link" asp-controller="Portfolio" asp-action="Projects">Projects</a>
+            </li>*@
             <li class="nav-item nav-tabs">
-                <a class="nav-link" href="/Contact">Contact</a>
+                <a class="nav-link" asp-controller="Portfolio" asp-action="Contact">Contact</a>
             </li>
         </ul>
     </nav>
@@ -40,10 +46,10 @@
         <span> &copy; <b> Michael Sjögren</b></span> <span> @DateTime.Now.ToString("MMM dd, yyyy")</span>
     </div>
 </footer>
-    <script src="~/lib/jquery-3.6.0.js"></script>
-    <script src="~/js/PeopleAjax.js"></script>
+<script src="~/lib/jquery-3.6.0.js"></script>
+<script src="~/js/PeopleAjax.js"></script>
 
-    @RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)
 
 </body>
 </html>
