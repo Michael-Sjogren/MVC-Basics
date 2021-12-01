@@ -1,0 +1,16 @@
+@model List<MVCBasics.Models.Person>
+<div>
+    <div>
+        
+    <div class="d-flex">
+        <div class="col"><strong>ID</strong></div>
+        <div class="col"><strong>Name</strong></div>
+        <div class="col"><strong>City</strong></div>
+        <div class="col"><strong>Phone</strong></div>
+    </div>
+    @foreach (var person in Model)
+    {
+        <partial name="~/Views/People/_PersonPartial.cshtml" model="person"/>
+    }
+    </div>
+</div>
