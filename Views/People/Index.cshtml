@@ -9,7 +9,9 @@
         var createPersonVm = new CreatePersonViewModel();
         var searchPersonVm = new SearchPersonViewModel();
     }
-    <partial name="_CreatePersonForm" model="@createPersonVm;"/>
+    @if(ViewBag.Cities != null && ViewBag.Cities.Count > 0){ 
+         
+    <partial name="_CreatePersonFormPartial" model="@createPersonVm;"/>
     
     <section class="mt-5">
         <header class="d-flex justify-content-between flex-wrap">
@@ -19,7 +21,12 @@
             <partial name="_SearchPersonForm" model="@searchPersonVm;"/>
         </header>
         <section class="w-auto p-2">
-            <partial name="_PeopleList" model="@Model.People"/>
+            <partial name="_PeopleListPartial" model="@Model.People"/>
         </section>
     </section>
+    }
+    else
+    {
+        <p>Add some Cities in order to create a person</p>
+    }
 </section>

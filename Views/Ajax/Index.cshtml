@@ -5,8 +5,8 @@
     <header>
         <h1>People ~ Ajax</h1>
     </header>
-    @{var createPersonVm = new CreatePersonViewModel();}
-    <partial name="_CreatePersonForm" model="@createPersonVm"/>
+    @{ var createPersonVm = new CreatePersonViewModel();}
+    <partial name="~/Views/People/_CreatePersonFormPartial.cshtml" model="@createPersonVm"/>
 
     <section class="mt-5">
         <header class="d-flex justify-content-between flex-wrap">
@@ -33,7 +33,7 @@
         </div>
 
         <section id="people-list" class="mt-5">
-
+            <partial name="~/Views/People/_PeopleListPartial.cshtml" model="@Model.People"/>
         </section>
     </section>
 </section>
