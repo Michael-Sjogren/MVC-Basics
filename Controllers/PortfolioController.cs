@@ -11,18 +11,21 @@ namespace MVCBasics.Controllers
         {
             _projectsRepository = projectsRepository;
         }
-
+        [HttpGet]
+        [Route("/")]
         public ViewResult About()
         {
             return View();
         }
-
+        [HttpGet]
+        [Route("/Projects/")]
         public ViewResult Projects()
         {
             ViewBag.Projects = _projectsRepository.GetAllProjects();
             return View();
         }
-
+        [HttpGet]
+        [Route("/Contact/")]
         public ViewResult Contact()
         {
             return View();
