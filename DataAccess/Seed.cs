@@ -20,7 +20,7 @@ namespace MVCBasics.DataAccess
 
         private static void SeedData(AppDbContext context)
         {
-            if (!context.People.Any())
+            if (!context.Countries.Any())
             {
                 Console.WriteLine("Seeding data...");
                 var swedishCities = new List<City>
