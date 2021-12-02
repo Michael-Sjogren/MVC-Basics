@@ -26,7 +26,7 @@ namespace MVCBasics.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Language",
+                name: "Languages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -36,7 +36,7 @@ namespace MVCBasics.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Language", x => x.Id);
+                    table.PrimaryKey("PK_Languages", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -97,9 +97,9 @@ namespace MVCBasics.Migrations
                 {
                     table.PrimaryKey("PK_PersonLanguages", x => new { x.PersonId, x.LanguageId });
                     table.ForeignKey(
-                        name: "FK_PersonLanguages_Language_LanguageId",
+                        name: "FK_PersonLanguages_Languages_LanguageId",
                         column: x => x.LanguageId,
-                        principalTable: "Language",
+                        principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -117,7 +117,7 @@ namespace MVCBasics.Migrations
                 values: new object[] { 1, "Sweden" });
 
             migrationBuilder.InsertData(
-                table: "Language",
+                table: "Languages",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
@@ -148,18 +148,18 @@ namespace MVCBasics.Migrations
                 columns: new[] { "Id", "CityId", "Name", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { 6, 1, "Lena", "555-893-321" },
-                    { 11, 1, "Eva", "555-321-555" },
-                    { 3, 2, "Sten", "555-321-468" },
-                    { 12, 4, "Hamid", "555-873-321" },
-                    { 1, 5, "Michael Sjögren", "555-322-31" },
+                    { 9, 1, "Stefan", "555-783-321" },
+                    { 10, 2, "Lina", "555-321-645" },
+                    { 5, 4, "Amir", "555-893-321" },
+                    { 8, 4, "Niklas", "555-321-324" },
+                    { 2, 5, "Anders", "555-321-324" },
+                    { 6, 5, "Lena", "555-893-321" },
                     { 7, 5, "Lisbeth", "555-321-567" },
-                    { 8, 5, "Niklas", "555-321-324" },
-                    { 2, 6, "Anders", "555-321-324" },
-                    { 4, 6, "Leonard", "555-897-321" },
-                    { 5, 7, "Amir", "555-893-321" },
-                    { 9, 7, "Stefan", "555-783-321" },
-                    { 10, 7, "Lina", "555-321-645" }
+                    { 1, 6, "Michael Sjögren", "555-322-31" },
+                    { 3, 7, "Sten", "555-321-468" },
+                    { 4, 7, "Leonard", "555-897-321" },
+                    { 11, 7, "Eva", "555-321-555" },
+                    { 12, 7, "Hamid", "555-873-321" }
                 });
 
             migrationBuilder.InsertData(
@@ -167,21 +167,21 @@ namespace MVCBasics.Migrations
                 columns: new[] { "LanguageId", "PersonId" },
                 values: new object[,]
                 {
+                    { 3, 9 },
+                    { 1, 10 },
+                    { 3, 5 },
+                    { 4, 8 },
+                    { 3, 2 },
                     { 5, 6 },
-                    { 4, 11 },
-                    { 5, 3 },
-                    { 2, 12 },
-                    { 6, 12 },
+                    { 1, 7 },
                     { 1, 1 },
                     { 3, 1 },
                     { 6, 1 },
-                    { 1, 7 },
-                    { 4, 8 },
-                    { 3, 2 },
+                    { 5, 3 },
                     { 1, 4 },
-                    { 3, 5 },
-                    { 3, 9 },
-                    { 1, 10 }
+                    { 4, 11 },
+                    { 2, 12 },
+                    { 6, 12 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -206,7 +206,7 @@ namespace MVCBasics.Migrations
                 name: "PersonLanguages");
 
             migrationBuilder.DropTable(
-                name: "Language");
+                name: "Languages");
 
             migrationBuilder.DropTable(
                 name: "People");

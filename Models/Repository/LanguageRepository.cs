@@ -22,22 +22,28 @@ namespace MVCBasics.Models.Repository
 
         public Language GetLanguageById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Languages.Find(id);
         }
 
         public Language GetLanguageByName(string name)
         {
-            throw new System.NotImplementedException();
+            return _context.Languages.First(l => l.Name.Equals(name));
         }
 
         public void DeleteLanguageById(int id)
         {
-            throw new System.NotImplementedException();
+            _context.Languages.Remove(GetLanguageById(id));
+            _context.SaveChanges();
         }
 
         public void CreateLanguage(CreateLanguageViewModel vm)
         {
-            throw new System.NotImplementedException();
+            _context.Languages.Add(
+                new Language()
+                {
+                    Name = vm.Name
+                });
+            _context.SaveChanges();
         }
     }
 }

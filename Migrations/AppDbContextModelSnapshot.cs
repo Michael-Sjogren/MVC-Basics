@@ -115,7 +115,7 @@ namespace MVCBasics.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Language");
+                    b.ToTable("Languages");
 
                     b.HasData(
                         new
@@ -179,42 +179,42 @@ namespace MVCBasics.Migrations
                         new
                         {
                             Id = 1,
-                            CityId = 5,
+                            CityId = 6,
                             Name = "Michael Sjögren",
                             PhoneNumber = "555-322-31"
                         },
                         new
                         {
                             Id = 2,
-                            CityId = 6,
+                            CityId = 5,
                             Name = "Anders",
                             PhoneNumber = "555-321-324"
                         },
                         new
                         {
                             Id = 3,
-                            CityId = 2,
+                            CityId = 7,
                             Name = "Sten",
                             PhoneNumber = "555-321-468"
                         },
                         new
                         {
                             Id = 4,
-                            CityId = 6,
+                            CityId = 7,
                             Name = "Leonard",
                             PhoneNumber = "555-897-321"
                         },
                         new
                         {
                             Id = 5,
-                            CityId = 7,
+                            CityId = 4,
                             Name = "Amir",
                             PhoneNumber = "555-893-321"
                         },
                         new
                         {
                             Id = 6,
-                            CityId = 1,
+                            CityId = 5,
                             Name = "Lena",
                             PhoneNumber = "555-893-321"
                         },
@@ -228,35 +228,35 @@ namespace MVCBasics.Migrations
                         new
                         {
                             Id = 8,
-                            CityId = 5,
+                            CityId = 4,
                             Name = "Niklas",
                             PhoneNumber = "555-321-324"
                         },
                         new
                         {
                             Id = 9,
-                            CityId = 7,
+                            CityId = 1,
                             Name = "Stefan",
                             PhoneNumber = "555-783-321"
                         },
                         new
                         {
                             Id = 10,
-                            CityId = 7,
+                            CityId = 2,
                             Name = "Lina",
                             PhoneNumber = "555-321-645"
                         },
                         new
                         {
                             Id = 11,
-                            CityId = 1,
+                            CityId = 7,
                             Name = "Eva",
                             PhoneNumber = "555-321-555"
                         },
                         new
                         {
                             Id = 12,
-                            CityId = 4,
+                            CityId = 7,
                             Name = "Hamid",
                             PhoneNumber = "555-873-321"
                         });
