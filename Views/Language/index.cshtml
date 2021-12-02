@@ -1,0 +1,45 @@
+
+@using MVCBasics.ViewModels
+@model List<MVCBasics.ViewModels.LanguageViewModel>
+
+<section>
+    <header>
+        <h1>Languages</h1>
+    </header>
+    @{
+        var createLanguage = new CreateLanguageViewModel();
+        //var searchPersonVm = new SearchPersonViewModel();
+    }
+    <section class="mt-5">
+        <header class="d-flex justify-content-between flex-wrap">
+            <partial name="_CreateLanguagePartial" model="@createLanguage"></partial>
+        </header>
+        <h2>
+            List of Countries
+        </h2>
+        <section class="w-auto p-2">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <th>#</th>
+                <th>Name</th>
+                </thead>
+                <tbody>
+                @foreach (var language in Model)
+                {
+                    <tr>
+                        <td>@language.Id</td>
+                        <td>@language.Name</td>
+                        <td>
+                            <a class="btn btn-outline-danger" asp-controller="Language" asp-action="Delete" asp-route-id="@language.Id">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+
+            </table>
+
+        </section>
+    </section>
+</section>

@@ -1,0 +1,23 @@
+@model MVCBasics.ViewModels.PersonViewModel
+<section class="container mt-5">
+    <div class="card">
+        <header class="card-header">
+            <div class="d-flex ">
+                <h4 class="float-start">@Model.Name</h4>
+                <a class="btn btn-danger btn-outline-danger float-end" asp-controller="People" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </div>
+        </header>
+        <div class="card-body">
+            <p class="card-text"><strong>Phone:</strong> @Model.Phone</p>
+            <p><strong>Languages</strong>:</p>
+            <ul class="list-unstyled d-flex justify-content-around" style="max-width: 30rem">
+                @foreach (var language in Model.Languages)
+                {
+                    <li class="card-text">
+                        @language.Name
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>

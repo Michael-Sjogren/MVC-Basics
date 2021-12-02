@@ -34,6 +34,7 @@ namespace MVCBasics
             services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddScoped<ICitiesRepository, CitiesRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
 
 
             services.AddControllersWithViews();

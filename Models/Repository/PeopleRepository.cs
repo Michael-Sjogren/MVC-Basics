@@ -22,7 +22,12 @@ namespace MVCBasics.Models.Repository
 
         public Person GetPersonById(int id)
         {
-            return _context.People.Find(id);
+            var p = _context.People.Find(id);
+            var personLanguages = _context.PersonLanguages
+                .Include(pl=>pl.Language)
+                .Where(person => person.PersonId == id);
+            p.PersonLanguages = personLanguages.ToList();
+            return p;
         }
 
         public Person GetPersonByName(string name)
