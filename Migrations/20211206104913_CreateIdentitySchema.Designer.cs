@@ -3,14 +3,16 @@ using System;
 using MVCBasics.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MVCBasics.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211206104913_CreateIdentitySchema")]
+    partial class CreateIdentitySchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,28 +246,28 @@ namespace MVCBasics.Migrations
                         new
                         {
                             Id = 1,
-                            CityId = 3,
+                            CityId = 7,
                             Name = "Michael Sjögren",
                             PhoneNumber = "555-322-31"
                         },
                         new
                         {
                             Id = 2,
-                            CityId = 6,
+                            CityId = 4,
                             Name = "Anders",
                             PhoneNumber = "555-321-324"
                         },
                         new
                         {
                             Id = 3,
-                            CityId = 6,
+                            CityId = 3,
                             Name = "Sten",
                             PhoneNumber = "555-321-468"
                         },
                         new
                         {
                             Id = 4,
-                            CityId = 1,
+                            CityId = 4,
                             Name = "Leonard",
                             PhoneNumber = "555-897-321"
                         },
@@ -279,49 +281,49 @@ namespace MVCBasics.Migrations
                         new
                         {
                             Id = 6,
-                            CityId = 2,
+                            CityId = 4,
                             Name = "Lena",
                             PhoneNumber = "555-893-321"
                         },
                         new
                         {
                             Id = 7,
-                            CityId = 6,
+                            CityId = 7,
                             Name = "Lisbeth",
                             PhoneNumber = "555-321-567"
                         },
                         new
                         {
                             Id = 8,
-                            CityId = 4,
+                            CityId = 1,
                             Name = "Niklas",
                             PhoneNumber = "555-321-324"
                         },
                         new
                         {
                             Id = 9,
-                            CityId = 6,
+                            CityId = 7,
                             Name = "Stefan",
                             PhoneNumber = "555-783-321"
                         },
                         new
                         {
                             Id = 10,
-                            CityId = 6,
+                            CityId = 2,
                             Name = "Lina",
                             PhoneNumber = "555-321-645"
                         },
                         new
                         {
                             Id = 11,
-                            CityId = 7,
+                            CityId = 2,
                             Name = "Eva",
                             PhoneNumber = "555-321-555"
                         },
                         new
                         {
                             Id = 12,
-                            CityId = 5,
+                            CityId = 3,
                             Name = "Hamid",
                             PhoneNumber = "555-873-321"
                         });

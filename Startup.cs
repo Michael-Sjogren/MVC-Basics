@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,15 +30,20 @@ namespace MVCBasics
             {
                 options.UseMySql(connectionString , ServerVersion.AutoDetect(connectionString));
             });
-
+            
             services.AddScoped<IProjectsRepository, ProjectsRepository>();
             services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddScoped<ICitiesRepository, CitiesRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
 
-
+            services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<AppDbContext>();
+            
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,33 +59,37 @@ namespace MVCBasics
 
             app.UseRouting();
 
-            
+            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     "default",
-                    "{controller=Portfolio}/{action=About}/{id?}");
+                    "{controller=Home}/{action=About}/{id?}");
                 endpoints.MapControllerRoute(
                     "About",
                     "{action=About}",
-                    defaults: new {controller = "Portfolio", action = "About"}
+                    defaults: new {controller = "Home", action = "About"}
                 );
                 endpoints.MapControllerRoute(
                     "Contact",
                     "{action=Contact}",
-                    defaults: new {controller = "Portfolio", action = "Contact"}
+                    defaults: new {controller = "Home", action = "Contact"}
                 );
                 endpoints.MapControllerRoute(
                     "Projects",
                     "{action=Projects}",
-                    defaults: new {controller = "Portfolio", action = "Projects"}
+                    defaults: new {controller = "Home", action = "Projects"}
                 );
 
                 endpoints.MapControllerRoute(
                     "People",
                     "{controller=People}/{action=Index}/{id?}"
                 );
+
+                endpoints.MapRazorPages();
             });
+            
         }
     }
 }

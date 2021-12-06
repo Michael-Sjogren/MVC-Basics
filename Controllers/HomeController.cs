@@ -4,15 +4,23 @@ using MVCBasics.Models.Interfaces;
 
 namespace MVCBasics.Controllers
 {
-    public class PortfolioController : Controller
+    public class HomeController : Controller
     {
         private readonly IProjectsRepository _projectsRepository;
-        public PortfolioController(IProjectsRepository projectsRepository)
+        public HomeController(IProjectsRepository projectsRepository)
         {
             _projectsRepository = projectsRepository;
         }
+
         [HttpGet]
         [Route("/")]
+        public IActionResult Index()
+        {
+            return RedirectToAction(nameof(About));
+        }
+        
+        [HttpGet]
+        [Route("/About")]
         public ViewResult About()
         {
             return View();

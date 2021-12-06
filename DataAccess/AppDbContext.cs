@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using MVCBasics.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace MVCBasics.DataAccess
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -16,9 +18,11 @@ namespace MVCBasics.DataAccess
         public DbSet<Language> Languages { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<PersonLanguage> PersonLanguages { get; set; }
+        public DbSet<AppUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<PersonLanguage>().HasKey(e => new {e.PersonId, e.LanguageId});
             modelBuilder.Entity<PersonLanguage>()
                 .HasOne(pl => pl.Person)
