@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using MVCBasics.DataAccess;
+using MVCBasics.Models.Auth;
 
 namespace MVCBasics.Areas.Identity.Pages.Account
 {
@@ -61,6 +61,22 @@ namespace MVCBasics.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            
+            [Required] 
+            [DataType(DataType.Date)]
+            [Display(Name = "Date Of Birth")]
+            public DateTime DateOfBirth { get; set; }
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last Name")]
+            [StringLength(100,ErrorMessage = "The last name is too long.")] 
+            public string LastName { get; set; }
+            
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            [StringLength(100,ErrorMessage = "The first name is too long.")]
+            public string FirstName { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)

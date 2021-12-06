@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCBasics.DataAccess;
 using MVCBasics.Models;
+using MVCBasics.Models.Auth;
 using MVCBasics.Models.Interfaces;
 using MVCBasics.Models.Repository;
 

@@ -1,3 +1,4 @@
+@using MVCBasics.Models.Auth
 @inject SignInManager<AppUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();

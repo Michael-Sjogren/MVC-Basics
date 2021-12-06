@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using MVCBasics.DataAccess;
+using MVCBasics.Models.Auth;
 
 namespace MVCBasics.Areas.Identity.Pages.Account.Manage
 {

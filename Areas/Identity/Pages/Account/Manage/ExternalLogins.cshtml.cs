@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MVCBasics.DataAccess;
+using MVCBasics.Models.Auth;
 
 namespace MVCBasics.Areas.Identity.Pages.Account.Manage
 {

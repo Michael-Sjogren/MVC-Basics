@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using MVCBasics.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using MVCBasics.Models.Auth;
 
 namespace MVCBasics.DataAccess
 {
