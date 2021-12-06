@@ -49,10 +49,22 @@ namespace MVCBasics.Models.Repository
             {
                 Name = vm.Name,
                 City = _context.Cities.Find(vm.CityId),
-                PhoneNumber = vm.PhoneNumber
+                PhoneNumber = vm.PhoneNumber,
             };
+
             
             _context.People.Add(newPerson);
+            _context.SaveChanges();
+
+            foreach (var languagId in vm.Languages)
+            {
+                _context.PersonLanguages.Add(new PersonLanguage
+                {
+                    PersonId = newPerson.Id,
+                    LanguageId = languagId
+                });
+                
+            }
             _context.SaveChanges();
         }
     }

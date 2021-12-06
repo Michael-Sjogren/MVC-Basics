@@ -12,12 +12,14 @@ namespace MVCBasics.Controllers
     {
         private readonly IPeopleRepository _peopleRepository;
         private readonly ICitiesRepository _citiesRepository;
-        private readonly ICitiesRepository _personLanguages;
+        private readonly ILanguageRepository _languagesRepository;
 
-        public PeopleController(IPeopleRepository peopleRepository, ICitiesRepository citiesRepository)
+        public PeopleController(IPeopleRepository peopleRepository, ICitiesRepository citiesRepository,
+            ILanguageRepository languagesRepository)
         {
             _peopleRepository = peopleRepository;
             _citiesRepository = citiesRepository;
+            _languagesRepository = languagesRepository;
         }
 
         // GET
@@ -30,6 +32,7 @@ namespace MVCBasics.Controllers
                 People = _peopleRepository.GetAllPeople().OrderBy(person => person.Id).ToList()
             };
             ViewBag.Cities = _citiesRepository.GetAllCities();
+            ViewBag.Languages = _languagesRepository.GetAllLanguages();
             return View(model);
         }
 
@@ -37,11 +40,12 @@ namespace MVCBasics.Controllers
         public IActionResult Create(CreatePersonViewModel model)
         {
             ViewBag.Cities = _citiesRepository.GetAllCities();
-            if (!ModelState.IsValid) return View("_CreatePersonFormPartial", model);
+            if (!ModelState.IsValid) return RedirectToAction(nameof(Index));
 
             _peopleRepository.CreatePerson(model);
-            return Redirect("/People/");
+            return RedirectToAction(nameof(Index));
         }
+
         [HttpGet]
         [HttpDelete]
         [Route("/People/Delete/{id:int}")]
@@ -86,5 +90,6 @@ namespace MVCBasics.Controllers
             };
             return View(pvm);
         }
+        
     }
 }
