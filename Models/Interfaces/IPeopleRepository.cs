@@ -12,5 +12,6 @@ namespace MVCBasics.Models.Interfaces
         public void DeletePersonById(int id);
 
         public void CreatePerson(CreatePersonViewModel vm);
+        public void UpdatePerson(EditPersonViewModel model);
     }
 }

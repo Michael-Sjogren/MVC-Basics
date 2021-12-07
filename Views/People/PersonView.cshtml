@@ -1,9 +1,10 @@
+@using MVCBasics.ViewModels
 @model MVCBasics.ViewModels.PersonViewModel
 <section class="container mt-5">
     <div class="card">
         <header class="card-header">
             <div class="d-flex ">
-                <h4 class="float-start">@Model.Name</h4>
+                <h4 class="float-start">@Model.Name <small>@Model.Id</small></h4>
                 <a class="btn btn-danger btn-outline-danger float-end" asp-controller="People" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
             </div>
         </header>
@@ -19,5 +20,9 @@
                 }
             </ul>
         </div>
+        @{
+            var editVm = new EditPersonViewModel{Id = Model.Id, Name = Model.Name , Languages = Model.Languages.Select(l => l.Id).ToList(), PhoneNumber = Model.Phone};
+        }
+        <partial name="_EditPersonFormPartial" model="@editVm"/>
     </div>
 </section>

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVCBasics.DataAccess;
 using MVCBasics.Models.Interfaces;
@@ -23,10 +24,8 @@ namespace MVCBasics.Models.Repository
         public Person GetPersonById(int id)
         {
             var p = _context.People.Find(id);
-            var personLanguages = _context.PersonLanguages
-                .Include(pl=>pl.Language)
-                .Where(person => person.PersonId == id);
-            p.PersonLanguages = personLanguages.ToList();
+            if (p == null) return null;
+            _context.Entry(p).Collection( pl => pl.PersonLanguages).Load();
             return p;
         }
 
@@ -56,16 +55,43 @@ namespace MVCBasics.Models.Repository
             _context.People.Add(newPerson);
             _context.SaveChanges();
 
-            foreach (var languagId in vm.Languages)
+            foreach (var languageId in vm.Languages)
             {
                 _context.PersonLanguages.Add(new PersonLanguage
                 {
                     PersonId = newPerson.Id,
-                    LanguageId = languagId
+                    LanguageId = languageId
                 });
                 
             }
             _context.SaveChanges();
+        }
+
+
+        public void UpdatePerson(EditPersonViewModel vm )
+        {
+            var p = GetPersonById(vm.Id);
+            if (p != null)
+            {
+                p.Name = vm.Name;
+                p.PhoneNumber = vm.PhoneNumber;
+                p.CityId = vm.CityId;
+                
+                _context.PersonLanguages.RemoveRange(p.PersonLanguages);
+                _context.SaveChanges();
+
+                foreach (var languageId in vm.Languages)
+                {
+                    _context.PersonLanguages.Add(new PersonLanguage
+                    {
+                        PersonId = p.Id,
+                        LanguageId = languageId
+                    });
+                
+                }
+
+                _context.SaveChanges();
+            }
         }
     }
 }

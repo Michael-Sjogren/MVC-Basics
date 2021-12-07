@@ -81,6 +81,11 @@ namespace MVCBasics.Controllers
         [Route("/People/{id:int}")]
         public IActionResult PersonView(int id)
         {
+            var languages = _languagesRepository.GetAllLanguages();
+            var cities = _citiesRepository.GetAllCities();
+            ViewBag.Cities = cities;
+            ViewBag.Languages = languages;
+
             var p = _peopleRepository.GetPersonById(id);
             var languagesVm =
                 p.PersonLanguages.Select(pl => new LanguageViewModel {Name = pl.Language.Name, Id = pl.Language.Id})
@@ -94,6 +99,17 @@ namespace MVCBasics.Controllers
             };
             return View(pvm);
         }
-        
+        [HttpPost]
+        [Route("/People/Update")]
+        public IActionResult Update(EditPersonViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _peopleRepository.UpdatePerson(model);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
