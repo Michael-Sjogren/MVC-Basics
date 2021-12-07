@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCBasics.Models;
 using MVCBasics.Models.Interfaces;
@@ -8,6 +9,7 @@ using MVCBasics.ViewModels;
 
 namespace MVCBasics.Controllers
 {
+    [Authorize]
     public class PeopleController : Controller
     {
         private readonly IPeopleRepository _peopleRepository;
@@ -23,6 +25,7 @@ namespace MVCBasics.Controllers
         }
 
         // GET
+
         [HttpGet]
         [Route("/People/")]
         public IActionResult Index()
@@ -35,6 +38,7 @@ namespace MVCBasics.Controllers
             ViewBag.Languages = _languagesRepository.GetAllLanguages();
             return View(model);
         }
+        
 
         [HttpPost]
         public IActionResult Create(CreatePersonViewModel model)
@@ -72,7 +76,7 @@ namespace MVCBasics.Controllers
             Console.WriteLine(vm.People.ToArray());
             return View("Index", vm);
         }
-
+        
         [HttpGet]
         [Route("/People/{id:int}")]
         public IActionResult PersonView(int id)

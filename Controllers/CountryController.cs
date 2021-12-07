@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCBasics.Models.Interfaces;
 using MVCBasics.ViewModels;
 
+
 namespace MVCBasics.Controllers
-{
+{   
+    [Authorize(Roles = "Admin")]
     public class CountryController : Controller
     {
         private readonly ICountryRepository _countryRepository;
@@ -11,7 +14,6 @@ namespace MVCBasics.Controllers
         {
             _countryRepository = countryRepository;
         }
-        
         [HttpGet]
         [Route("/Countries/")]
         public IActionResult Index()

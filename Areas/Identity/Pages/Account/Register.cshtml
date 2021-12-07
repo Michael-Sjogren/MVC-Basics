@@ -42,6 +42,11 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control"/>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            @{ var list = new SelectList(@Model.Roles, "Name", "Name");}
+            <div class="form-group">
+                <label asp-for="Input.Role"></label>
+                <select class="form-control" asp-for="Input.Role" asp-items="list"></select>
+            </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>

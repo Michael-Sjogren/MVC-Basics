@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCBasics.Models.Interfaces;
 using MVCBasics.ViewModels;
 
 namespace MVCBasics.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CityController : Controller
     {
         private readonly ICitiesRepository _citiesRepository;

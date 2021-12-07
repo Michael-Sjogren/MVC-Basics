@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVCBasics.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -18,27 +19,33 @@ namespace MVCBasics.DataAccess
         public DbSet<Language> Languages { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<PersonLanguage> PersonLanguages { get; set; }
-        public DbSet<AppUser> Users { get; set; }
+        public override DbSet<AppUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<PersonLanguage>().HasKey(e => new {e.PersonId, e.LanguageId});
             modelBuilder.Entity<PersonLanguage>()
                 .HasOne(pl => pl.Person)
                 .WithMany(pl => pl.PersonLanguages)
                 .HasForeignKey(pl => pl.PersonId);
-
+            
             modelBuilder.Entity<PersonLanguage>()
                 .HasOne(pl => pl.Language)
                 .WithMany(pl => pl.PersonLanguages)
                 .HasForeignKey(pl => pl.LanguageId);
+            
+
 
             SeedData(modelBuilder);
         }
 
         private static void SeedData(ModelBuilder builder)
         {
+            // user roles
+            builder.Entity<IdentityRole>().HasData(new IdentityRole{ Name = "User" , NormalizedName = "USER"});
+            builder.Entity<IdentityRole>().HasData(new IdentityRole{ Name = "Admin", NormalizedName = "ADMIN"});
             // languages
             var french = new Language {Id = 1, Name = "French"};
             var german = new Language {Id = 2, Name = "German"};

@@ -255,77 +255,77 @@ namespace MVCBasics.Migrations
                         new
                         {
                             Id = 1,
-                            CityId = 7,
+                            CityId = 1,
                             Name = "Michael Sjögren",
                             PhoneNumber = "555-322-31"
                         },
                         new
                         {
                             Id = 2,
-                            CityId = 6,
+                            CityId = 1,
                             Name = "Anders",
                             PhoneNumber = "555-321-324"
                         },
                         new
                         {
                             Id = 3,
-                            CityId = 5,
+                            CityId = 1,
                             Name = "Sten",
                             PhoneNumber = "555-321-468"
                         },
                         new
                         {
                             Id = 4,
-                            CityId = 7,
+                            CityId = 6,
                             Name = "Leonard",
                             PhoneNumber = "555-897-321"
                         },
                         new
                         {
                             Id = 5,
-                            CityId = 4,
+                            CityId = 7,
                             Name = "Amir",
                             PhoneNumber = "555-893-321"
                         },
                         new
                         {
                             Id = 6,
-                            CityId = 4,
+                            CityId = 2,
                             Name = "Lena",
                             PhoneNumber = "555-893-321"
                         },
                         new
                         {
                             Id = 7,
-                            CityId = 1,
+                            CityId = 5,
                             Name = "Lisbeth",
                             PhoneNumber = "555-321-567"
                         },
                         new
                         {
                             Id = 8,
-                            CityId = 3,
+                            CityId = 6,
                             Name = "Niklas",
                             PhoneNumber = "555-321-324"
                         },
                         new
                         {
                             Id = 9,
-                            CityId = 4,
+                            CityId = 5,
                             Name = "Stefan",
                             PhoneNumber = "555-783-321"
                         },
                         new
                         {
                             Id = 10,
-                            CityId = 5,
+                            CityId = 2,
                             Name = "Lina",
                             PhoneNumber = "555-321-645"
                         },
                         new
                         {
                             Id = 11,
-                            CityId = 2,
+                            CityId = 3,
                             Name = "Eva",
                             PhoneNumber = "555-321-555"
                         },
@@ -454,6 +454,22 @@ namespace MVCBasics.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "76e403be-901a-4280-a8ee-b26c0efbd356",
+                            ConcurrencyStamp = "f7ecf609-822f-4648-9ff4-f050c81f8a93",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "76506ef3-12e5-430d-9c16-b3d760969f01",
+                            ConcurrencyStamp = "0ca43035-7870-4208-8bb4-6b8a848a2a76",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

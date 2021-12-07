@@ -38,7 +38,12 @@ namespace MVCBasics
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
 
-            services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.SignIn.RequireConfirmedEmail = false;
+                    options.User.RequireUniqueEmail = true;
+                })
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDbContext>();
@@ -60,10 +65,12 @@ namespace MVCBasics
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
+
                 endpoints.MapControllerRoute(
                     "default",
                     "{controller=Home}/{action=About}/{id?}");
@@ -82,13 +89,6 @@ namespace MVCBasics
                     "{action=Projects}",
                     defaults: new {controller = "Home", action = "Projects"}
                 );
-
-                endpoints.MapControllerRoute(
-                    "People",
-                    "{controller=People}/{action=Index}/{id?}"
-                );
-
-                endpoints.MapRazorPages();
             });
             
         }
