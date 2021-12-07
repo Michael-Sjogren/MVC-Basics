@@ -11,5 +11,6 @@ namespace MVCBasics.Models.Interfaces
         public void DeleteCountry(int id);
 
         public void CreateCountry(CreateCountryViewModel vm);
+        public void UpdateCountry(UpdateCountryViewModel vm);
     }
 }

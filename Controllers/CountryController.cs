@@ -36,5 +36,29 @@ namespace MVCBasics.Controllers
             _countryRepository.DeleteCountry(id);
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        [Route("/Countries/{id:int}")]
+        public IActionResult CountryView(int id)
+        {
+            var country = _countryRepository.GetCountryById(id);
+            if (country != null)
+            {
+                var cvm = new CountryViewModel {Name  = country.Name , Id = country.Id};
+                return View(cvm);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult Update(UpdateCountryViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                _countryRepository.UpdateCountry(vm);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

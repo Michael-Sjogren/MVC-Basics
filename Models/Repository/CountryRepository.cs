@@ -42,5 +42,15 @@ namespace MVCBasics.Models.Repository
             );
             _context.SaveChanges();
         }
+
+        public void UpdateCountry(UpdateCountryViewModel vm)
+        {
+            var country = GetCountryById(vm.Id);
+            if (country != null)
+            {
+                country.Name = vm.Name;
+            }
+            _context.SaveChanges();
+        }
     }
 }

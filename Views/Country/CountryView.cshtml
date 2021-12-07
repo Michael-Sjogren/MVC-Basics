@@ -1,5 +1,5 @@
 @using MVCBasics.ViewModels
-@model MVCBasics.ViewModels.CityViewModel
+@model MVCBasics.ViewModels.CountryViewModel
 
 <section class="container mt-5">
     <div class="card">
@@ -10,11 +10,11 @@
             </div>
         </header>
         <div class="card-body">
-            <p class="card-text"><strong>City Name:</strong> @Model.Name</p>
+            <p class="card-text"><strong>Country Name:</strong> @Model.Name</p>
         </div>
         @{
-            var editVm = new UpdateCityViewModel{Id = Model.Id, Name = Model.Name , CountryId =  Model.Country.Id};
+            var editVm = new UpdateCountryViewModel{Id = Model.Id, Name = Model.Name };
         }
-        <partial name="_UpdateCityFormPartial" model="@editVm"/>
+        <partial name="_UpdateCountryFormPartial" model="@editVm"/>
     </div>
 </section>

@@ -1,0 +1,13 @@
+@model MVCBasics.ViewModels.UpdateCountryViewModel
+
+<form asp-controller="Country" asp-action="Update"  method="post" class="form p-5 border border-secondary" style="max-width: 28rem; margin-left: auto;">
+    <h4 class="form-text">Edit Country @Model.Id.</h4>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name"/>
+        <span class="alert-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <input type="number" asp-for="Id" value="@Model.Id" hidden="hidden">
+    <button class="form-control btn btn-primary" type="submit"> Update Country </button>
+</form>
