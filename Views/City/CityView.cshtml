@@ -1,0 +1,20 @@
+@using MVCBasics.ViewModels
+@model MVCBasics.ViewModels.CityViewModel
+
+<section class="container mt-5">
+    <div class="card">
+        <header class="card-header">
+            <div class="d-flex ">
+                <h4 class="float-start">@Model.Name <small>@Model.Id</small></h4>
+                <a class="btn btn-danger btn-outline-danger float-end" asp-controller="People" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </div>
+        </header>
+        <div class="card-body">
+            <p class="card-text"><strong>City Name:</strong> @Model.Name</p>
+        </div>
+        @{
+            var editVm = new UpdateCityViewModel{Id = Model.Id, Name = Model.Name , CountryId =  Model.Country.Id};
+        }
+        <partial name="_UpdateCityFormPartial" model="@editVm"/>
+    </div>
+</section>

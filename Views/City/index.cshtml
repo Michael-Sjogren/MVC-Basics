@@ -29,7 +29,7 @@
                 {
                     <tr>
                         <td>@city.Id</td>
-                        <td>@city.Name</td>
+                        <td> <a asp-route-id="@city.Id" asp-controller="City" asp-action="CityView">@city.Name</a></td>
                         <td>0</td>
                         <td>@city.Country.Name</td>
                         <td>

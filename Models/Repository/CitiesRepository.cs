@@ -21,7 +21,9 @@ namespace MVCBasics.Models.Repository
 
         public City GetCityById(int id)
         {
-            return _context.Cities.Find(id);
+            var city = _context.Cities.Find(id);
+            _context.Entry(city).Reference(p =>p.Country).Load();
+            return city;
         }
 
         public City GetCityByName(string name)
@@ -42,6 +44,17 @@ namespace MVCBasics.Models.Repository
                 new City{Name = vm.Name , Country = _context.Countries.Find(vm.CountryId)}
                 );
             _context.SaveChanges();
+        }
+
+        public void UpdateCity(UpdateCityViewModel vm)
+        {
+            var c = _context.Cities.Find(vm.Id);
+            if (c != null)
+            {
+                c.CountryId = vm.CountryId;
+                c.Name = vm.Name;
+                _context.SaveChanges();
+            }
         }
     }
 }

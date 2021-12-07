@@ -11,5 +11,6 @@ namespace MVCBasics.Models.Interfaces
         public void DeleteCity(int id);
 
         public void CreateCity(CreateCityViewModel vm);
+        public void UpdateCity(UpdateCityViewModel model);
     }
 }

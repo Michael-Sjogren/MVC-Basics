@@ -24,7 +24,8 @@ namespace MVCBasics.Controllers
             ViewBag.Countries = _countryRepository.GetAllCountries();
             return View(_citiesRepository.GetAllCities());
         }
-
+        
+        [HttpPost]
         public IActionResult Create(CreateCityViewModel model)
         {
             if (!ModelState.IsValid) return RedirectToAction(nameof(Index));
@@ -32,11 +33,34 @@ namespace MVCBasics.Controllers
             return RedirectToAction(nameof(Index));
         }
         
+        [HttpPost]
+        public IActionResult Update(UpdateCityViewModel model)
+        {
+            if (!ModelState.IsValid) return RedirectToAction(nameof(Index));
+            _citiesRepository.UpdateCity(model);
+            return RedirectToAction(nameof(Index));
+        }
         [HttpGet]
         public IActionResult Delete(int id)
         {
             _citiesRepository.DeleteCity(id);
             return RedirectToAction(nameof(Index));
+        }
+        
+        [HttpGet]
+        [Route("/Cities/{id:int}")]
+        public IActionResult CityView(int id)
+        {
+            ViewBag.Countries = _countryRepository.GetAllCountries();
+            var city = _citiesRepository.GetCityById(id);
+            if (city == null) return RedirectToAction(nameof(Index));
+            var cvm = new CityViewModel()
+            {
+                Country = new CountryViewModel{ Name = city.Country.Name , Id = city.CountryId},
+                Id = city.Id,
+                Name = city.Name
+            };
+            return View(cvm);
         }
     }
 }

@@ -1,0 +1,24 @@
+@model MVCBasics.ViewModels.UpdateCityViewModel
+
+<form asp-controller="City" asp-action="Update"  method="post" class="form p-5 border border-secondary" style="max-width: 28rem; margin-left: auto;">
+    <h4 class="form-text">Edit City @Model.Id.</h4>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name"/>
+        <span class="alert-danger" asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CountryId"></label>
+        <select class="form-control" asp-for="CountryId">
+            @{
+                foreach (var country in ViewBag.Countries)
+                {
+                    <option value="@country.Id">@country.Name</option>
+                }
+            }
+        </select>
+        <span class="alert-danger" asp-validation-for="CountryId"></span>
+    </div>
+    <input type="number" asp-for="Id" value="@Model.Id" hidden="hidden">
+    <button class="form-control btn btn-primary" type="submit"> Update City </button>
+</form>
