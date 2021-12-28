@@ -10,6 +10,12 @@
         <a asp-controller="People" asp-action="PersonView" asp-route-id="@Model.Id">@Model.Name</a>
     </div>
     <div class="col">
+        @Model.City.Country.Name
+    </div>
+    <div class="col">
+        @Model.City.Name
+    </div>
+    <div class="col">
         @Model.PhoneNumber
     </div>
     <div class="align-self-end">

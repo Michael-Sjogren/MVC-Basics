@@ -6,18 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.14.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.linux-x64" Version="3.14.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
+    <PackageReference Include="Microsoft.ClearScript.Core" Version="7.2.0" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-x64" Version="7.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.3" />
+    <PackageReference Include="React.AspNet" Version="5.2.12" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Migrations" />
     <Folder Include="wwwroot\css" />
-    <Folder Include="wwwroot\js" />
     <Folder Include="wwwroot\lib" />
   </ItemGroup>
 

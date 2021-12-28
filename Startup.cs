@@ -8,6 +8,10 @@ using MVCBasics.DataAccess;
 using MVCBasics.Models;
 using MVCBasics.Models.Interfaces;
 using MVCBasics.Models.Repository;
+using Microsoft.AspNetCore.Http;
+using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using React.AspNet;
 
 namespace MVCBasics
 {
@@ -35,8 +39,11 @@ namespace MVCBasics
             services.AddScoped<ICitiesRepository, CitiesRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-
+            services.AddReact();
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
+                .AddV8();
             services.AddControllersWithViews();
         }
 
@@ -49,10 +56,14 @@ namespace MVCBasics
             }
 
             app.UseHttpsRedirection();
+            app.UseReact(config =>
+            {
+                config.AddScript("file");
+            });
             app.UseStaticFiles();
-
+            
             app.UseRouting();
-
+            app.UseCors();
             
             app.UseEndpoints(endpoints =>
             {
