@@ -26,6 +26,7 @@ function CreatePerson(props) {
             return;
         }
         setErrors([]);
+        
         props.onCreatePerson(
             {
                 Name: Name,
@@ -34,6 +35,11 @@ function CreatePerson(props) {
                 CityId: CityId
             }
         );
+
+        setFullName("");
+        setPhoneNumber("");
+        setLanguages([]);
+        setCity(-1);
     }
 
     const handleLanguagesChanged = (options) => {
@@ -57,12 +63,12 @@ function CreatePerson(props) {
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="inputName4">Full Name</label>
-                            <input onChange={(e) => setFullName(e.target.value)} type="text" className="form-control"
+                            <input value={Name} onChange={(e) => setFullName(e.target.value)} type="text" className="form-control"
                                    id="inputName4" placeholder="Full Name"/>
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="inputPhoneNumber">Phone Number</label>
-                            <input onChange={(e) => setPhoneNumber(e.target.value)} type="text" className="form-control"
+                            <input value={PhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} type="text" className="form-control"
                                    id="inputPhoneNumber" placeholder="Phone Number"/>
                         </div>
                     </div>
