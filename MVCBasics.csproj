@@ -31,4 +31,8 @@
     <_ContentIncludedByDefault Remove="Pages\Country\Index.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="package.json" />
+  </ItemGroup>
+
 </Project>

@@ -17,7 +17,7 @@ namespace MVCBasics.Models.Repository
         }
         public List<Person> GetAllPeople()
         {
-            return _context.People.Include(person => person.City).ToList();
+            return _context.People.Include(person => person.City).ThenInclude(c => c.Country).ToList();
         }
 
         public Person GetPersonById(int id)
@@ -26,6 +26,8 @@ namespace MVCBasics.Models.Repository
             var personLanguages = _context.PersonLanguages
                 .Include(pl=>pl.Language)
                 .Where(person => person.PersonId == id);
+            p.City = _context.Cities.Find(p.CityId);
+            p.City.Country = _context.Countries.Find(p.City.CountryId);
             p.PersonLanguages = personLanguages.ToList();
             return p;
         }

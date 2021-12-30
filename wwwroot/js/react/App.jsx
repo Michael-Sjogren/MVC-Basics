@@ -1,13 +1,10 @@
-import PersonList from './Components/PersonList.jsx';
-class App extends React.Component {
-    render() {
-        return (
-            <div className="container">
-                Hello from react!
-                <PersonList/>
-            </div>
-        )
-    }
+import PeopleList from "./Components/PeopleList.jsx";
+function App() {
+    return (
+        <div className="">
+            <PeopleList />
+        </div>
+    )
 }
 
-ReactDOM.render(<App/>, document.getElementById("react-app"));
+ReactDOM.render(<App />, document.getElementById("react-app"));
